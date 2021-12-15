@@ -16,14 +16,14 @@ const AppRouter = () => {
 					/* return <Route path={route.path} element={route.element} /> */
 				}
 				)}
-				<Route path="/" element={<Navigate replace to={RouteNames.EVENT} />} />
+				<Route path="*" element={<Navigate replace to={RouteNames.EVENT} />} />
 			</Routes>
 			:
 			<Routes>
 				{publicRoutes.map(route => 
 					<Route path={route.path} element={<Login />} key={route.path} />
 				)}
-				<Route path="/" element={<Navigate replace to={RouteNames.LOGIN} />} />
+				<Route path="*" element={<Navigate replace to={RouteNames.LOGIN} />} />
 			</Routes>
 	);
 };
