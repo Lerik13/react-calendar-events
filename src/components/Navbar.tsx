@@ -1,15 +1,16 @@
 import React, {FC} from 'react';
 import { Layout, Menu, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const Navbar: FC = () => {
 	const navigate = useNavigate();
-	const auth = false;
+	const {isAuth} = useTypedSelector(state => state.auth);
 
 	return (
 		<Layout.Header>
 			<Row justify="end">
-				{auth 
+				{isAuth 
 					? 
 					<>
 						<div style={{color: 'white'}}>
@@ -17,7 +18,7 @@ const Navbar: FC = () => {
 						</div>
 						<Menu theme="dark" mode="horizontal" selectable={false}>
 							<Menu.Item onClick={() => console.log('Logout')} key={1}>
-								Logout
+								LogOut
 							</Menu.Item>
 						</Menu>
 					</>
@@ -25,7 +26,7 @@ const Navbar: FC = () => {
 					<>
 						<Menu theme="dark" mode="horizontal" selectable={false}>
 							<Menu.Item onClick={() => navigate('/login')} key={1}>
-								Login
+								LogIn
 							</Menu.Item>
 						</Menu>
 					</>
