@@ -12,8 +12,8 @@ const AppRouter = () => {
 		isAuth ?
 			<Routes>
 				{privateRoutes.map(route => {
-					console.log(route);
-					 return <Route path={route.path} element={<Event />} key={route.path} /> 
+					//console.log(route);
+					return <Route path={route.path} element={<Event />} key={route.path} /> 
 					/* return <Route path={route.path} element={route.element} /> */
 				}
 				)}
