@@ -25,7 +25,7 @@ export const AuthActionCreators = {
 				} else {
 					dispatch(AuthActionCreators.setError('Incorrect username or password'))
 				}
-			}, 3000)
+			}, 1000)
 		} catch (e) {
 			dispatch(AuthActionCreators.setError('Error during Login'))
 		}
