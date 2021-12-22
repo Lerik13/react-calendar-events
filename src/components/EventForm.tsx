@@ -4,9 +4,12 @@ import { rules } from '../utils/rules';
 import { IUser } from '../models/IUser';
 import { IEvent } from '../models/IEvent';
 import { Moment } from 'moment';
+import { formatDate } from '../utils/date';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 interface EventFormProps{
-	guests: IUser[]
+	guests: IUser[],
+	submit: (event: IEvent) => void
 }
 
 const EventForm: FC<EventFormProps> = (props) => {
@@ -17,12 +20,22 @@ const EventForm: FC<EventFormProps> = (props) => {
 		guest: ''
 	} as IEvent);
 
+	const {user} = useTypedSelector(state => state.auth)
+
 	const selectDate = (date: Moment | null) => {
-		
+		if (date) {
+			//console.log(formatDate(date.toDate()))
+			setEvent({...event, date: formatDate(date.toDate())})
+		}
+	}
+
+	const submitForm = () => {
+		props.submit({...event, author: user.username})
+		//console.log({...event, author: user.username})
 	}
 
 	return (
-		<Form>
+		<Form onFinish={submitForm}>
 			<Form.Item
 				label="Event description"
 				name="description"
